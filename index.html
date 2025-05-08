@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Calculator</title>
+  <style type="text/css">
+    body {
+      background-image: url("https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yMjItbWluZC0xNl8xLmpwZw.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family: sans-serif;
+    }
+
+    .dark-mode {
+      background-color: #333;
+      color: white;
+    }
+
+    .dark-mode input[type="text"] {
+      background-color: #555;
+      color: white;
+    }
+
+    .dark-mode button {
+      background-color: #666;
+      color: white;
+    }
+
+    .dark-mode .container {
+      background-color: #222020;
+    }
+
+    .dark-mode .container3 {
+      background-color: #000000;
+    }
+
+    input[type="text"] {
+      height: 30px;
+      width: 80%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+    }
+
+    button {
+      width: 58px;
+      height: 58px;
+      margin: 8px;
+      font-size: 25px;
+      border-radius: 10px;
+      border: none;
+      background-color: rgb(235, 245, 245);
+    }
+	.container3 .blue {
+		color: rgb(0, 187, 255);
+		font-size: 30px;
+	}
+
+	.container3 .blue2 {
+		color: white;
+		background-color:rgb(0, 187, 255);
+		width: 100px;
+		font-size: 40px;
+	}
+
+	.container3 .brod{
+		font-size: 23px;
+		font-weight: bold;
+	}
+
+    .container {
+      margin-top: 50px;
+      box-shadow: 0 30px 30px rgba(114, 226, 234, 0.1);
+      width: 350px;
+      background-color: rgb(194, 245, 245);
+	  padding-top: 5px;
+    }
+
+
+    .container3 {
+      background-color: white;
+      width: 350px;
+      box-shadow: 30px 0 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <i class="fa fa-sun theme-toggle" onclick="toggleTheme()" id="theme-icon"></i>
+
+  <center>
+    <div class="container">    
+        <h3>CALCULATOR</h3>
+      <input type="text" id="show">
+      <br>
+    </div>
+    <div class="container3">
+      <button onclick="clearDisplay()" class="brod">CE</button>
+      <button onclick="backspace()"><i class="fa fa-times-circle" style="color: #74C0FC;"></i></button>
+      <button onclick="appendToDisplay('%')" class="blue">%</button>
+      <button onclick="appendToDisplay('/')" class="blue">/</button>
+      <br>
+      <button onclick="appendToDisplay('7')">7</button>
+      <button onclick="appendToDisplay('8')">8</button>
+      <button onclick="appendToDisplay('9')">9</button>
+      <button onclick="appendToDisplay('*')" class="blue">*</button>
+      <br>
+      <button onclick="appendToDisplay('4')">4</button>
+      <button onclick="appendToDisplay('5')">5</button>
+      <button onclick="appendToDisplay('6')">6</button>
+      <button onclick="appendToDisplay('-')" class="blue">-</button>
+      <br>
+      <button onclick="appendToDisplay('1')">1</button>
+      <button onclick="appendToDisplay('2')">2</button>
+      <button onclick="appendToDisplay('3')">3</button>
+      <button onclick="appendToDisplay('+')" class="blue">+</button>
+      <br>
+      <button onclick="appendToDisplay('0')">0</button>
+      <button onclick="appendToDisplay('.')" class="blue">.</button>
+      <button onclick="appendToDisplay('(')" class="blue">(</button>
+      <button onclick="appendToDisplay(')')" class="blue">)</button>
+      <button onclick="calculate()" class="blue2">=</button>
+      <br>
+    </div>
+  </center>
+
+  <script type="text/javascript">
+    function appendToDisplay(value) {
+      document.getElementById('show').value += value;
+    }
+
+    function clearDisplay() {
+      document.getElementById('show').value = '';
+    }
+
+    function backspace() {
+      var display = document.getElementById('show');
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculate() {
+      try {
+        var result = eval(document.getElementById('show').value);
+        document.getElementById('show').value = result;
+      } catch (error) {
+        document.getElementById('show').value = 'Error';
+      }
+    }
+
+    function toggleTheme() {
+      var body = document.body;
+      body.classList.toggle('dark-mode');
+
+      var themeIcon = document.getElementById('theme-icon');
+      if (body.classList.contains('dark-mode')) {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      } else {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      }
+    }
+  </script>
+</body>
+</html>
